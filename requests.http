@@ -1,0 +1,31 @@
+@host = http://localhost:4400
+
+###
+
+GET {{host}}/api/pets
+
+###
+
+POST {{host}}/api/pets
+Content-Type: application/json
+
+{"name": "Fluffy", "age": 5, "weightInKg": 7, "kind": "cat"}
+
+### 
+
+PUT {{host}}/api/owners/1/pets/24
+
+###
+
+GET {{host}}/api/owners
+
+###
+
+GET {{host}}/api/owners/1
+
+###
+
+POST {{host}}/api/owners
+Content-Type: application/json
+
+{"name": "John", "age": 24}
