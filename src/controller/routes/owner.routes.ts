@@ -10,7 +10,7 @@ interface PluginOptions {
   ownerService: OwnerService
 }
 
-export const createOwnerRoute: FastifyPluginAsync<PluginOptions> = async (app, { petService, ownerService }
+export const createOwnerRoutes: FastifyPluginAsync<PluginOptions> = async (app, { petService, ownerService }
 ) => {
   // Add Type Provider
   const appWithTypeProvider = app.withTypeProvider<JsonSchemaToTsProvider>();

@@ -2,7 +2,7 @@ import { FastifyPluginAsync } from 'fastify';
 import { getPetByIdSchema, getPetsSchema, postPetsSchema } from '../pet.schemas';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
 
-export const createPetRoute: FastifyPluginAsync = async (app) => {
+export const createPetRoutes: FastifyPluginAsync = async (app) => {
   // Adding Type-Provider
   const appWithTypeProvider = app.withTypeProvider<JsonSchemaToTsProvider>()
 
