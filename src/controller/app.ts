@@ -13,7 +13,8 @@ type Dependencies = {
 
 declare module 'fastify' {
   interface FastifyInstance {
-    petService: PetService
+    petService: PetService,
+    ownerService: OwnerService
   }
 }
 
@@ -28,9 +29,10 @@ export default function createApp(options = {}, dependencies: Dependencies) {
   const app = fastify(options)
 
   app.decorate('petService', petService);
+  app.decorate('ownerService', ownerService);
 
   app.register(createPetRoutes);
-  app.register(createOwnerRoutes, { petService, ownerService });
+  app.register(createOwnerRoutes);
 
   return app;
 }
