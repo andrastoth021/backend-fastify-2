@@ -16,6 +16,9 @@ declare module 'fastify' {
     petService: PetService,
     ownerService: OwnerService
   }
+  interface FastifyRequest {
+    message: string
+  }
 }
 
 export default function createApp(options = {}, dependencies: Dependencies) {
@@ -28,11 +31,26 @@ export default function createApp(options = {}, dependencies: Dependencies) {
 
   const app = fastify(options)
 
+  app.decorateRequest('message', 'Hello')
+
+  app.addHook('onRequest', (request, reply, done) => {
+    const message = request.message;
+    console.log('Message: ' + message);
+    done()
+  })
+
+  app.addHook('onResponse', (request, reply, done) => {
+    const message = request.message;
+    console.log('Message: ' + message)
+    done()
+  })
+
   app.decorate('petService', petService);
   app.decorate('ownerService', ownerService);
 
   app.register(createPetRoutes);
   app.register(createOwnerRoutes);
+  // app.register(createMessengerPlugin, { message: 'Titkos üzenet száll a szélben' });
 
   return app;
 }
